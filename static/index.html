@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .result-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        .feature-importance {
+            margin-top: 15px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            display: none;
+        }
+        .select2-container {
+            width: 100% !important;
+        }
+        .debug-info {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Car Price Prediction System</h1>
+        
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="alert alert-info" id="loadingStatus">
+                    Loading feature data...
+                </div>
+                
+                <form id="predictionForm" style="display:none;">
+                    <div class="row">
+                        <!-- Categorical Features Form Group -->
+                        <div class="col-md-6">
+                            <h4>Basic Car Information</h4>
+                            
+                            <div class="form-group">
+                                <label for="Manufacturer">Manufacturer</label>
+                                <select id="Manufacturer" name="Manufacturer" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Model">Model</label>
+                                <select id="Model" name="Model" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Category">Category</label>
+                                <select id="Category" name="Category" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Leather_interior">Leather Interior</label>
+                                <select id="Leather_interior" name="Leather_interior" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Fuel_type">Fuel Type</label>
+                                <select id="Fuel_type" name="Fuel_type" class="form-control category-select" required></select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h4>Technical Specifications</h4>
+                            
+                            <div class="form-group">
+                                <label for="Gear_box_type">Gearbox Type</label>
+                                <select id="Gear_box_type" name="Gear_box_type" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Drive_wheels">Drive Wheels</label>
+                                <select id="Drive_wheels" name="Drive_wheels" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Doors">Number of Doors</label>
+                                <select id="Doors" name="Doors" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Wheel">Steering Wheel Position</label>
+                                <select id="Wheel" name="Wheel" class="form-control category-select" required></select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="Color">Color</label>
+                                <select id="Color" name="Color" class="form-control category-select" required></select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <h4>Numerical Parameters</h4>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Prod_year">Production Year</label>
+                                <input type="number" id="Prod_year" name="Prod_year" class="form-control" min="1900" max="2025" placeholder="1939 - 2025">
+                                <small class="form-text text-muted">Recommended Range: 1939 - 2025</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Engine_volume">Engine Volume</label>
+                                <input type="number" id="Engine_volume" name="Engine_volume" class="form-control" step="0.1" min="0">
+                                <small class="form-text text-muted">Recommended Range: 0.0 - 20.0</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Cylinders">Number of Cylinders</label>
+                                <input type="number" id="Cylinders" name="Cylinders" class="form-control" min="0">
+                                <small class="form-text text-muted">Recommended Range: 1 - 16</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Airbags">Number of Airbags</label>
+                                <input type="number" id="Airbags" name="Airbags" class="form-control" min="0">
+                                <small class="form-text text-muted">Recommended Range: 0 - 16</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Mileage">Mileage</label>
+                                <input type="number" id="Mileage" name="Mileage" class="form-control" min="0">
+                                <small class="form-text text-muted">Recommended Range: 0 - 2,500,000,000</small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="Levy">Tax Levy</label>
+                                <input type="number" id="Levy" name="Levy" class="form-control" min="0">
+                                <small class="form-text text-muted">Recommended Range: 87 - 11,714</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Predict Price</button>
+                    </div>
+                </form>
+                
+                <div class="loading">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Predicting, please wait...</p>
+                </div>
+                
+                <div class="error-message"></div>
+                
+                <div class="result-container">
+                    <h3 class="text-center">Prediction Results</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">Predicted Price: <span id="predictedPrice" class="text-primary"></span></h4>
+                            <div id="confidenceInterval" class="text-center"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-importance">
+                        <h5>Feature Importance</h5>
+                        <div id="importanceChart"></div>
+                    </div>
+                </div>
+                
+                <!-- Debug Information Section -->
+                <div class="debug-info">
+                    <h5>Debug Information <button id="toggleDebug" class="btn btn-sm btn-outline-secondary">Show/Hide</button></h5>
+                    <div id="debugContent" style="display:none;">
+                        <pre id="apiResponse" class="bg-light p-3" style="max-height: 400px; overflow: auto;"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

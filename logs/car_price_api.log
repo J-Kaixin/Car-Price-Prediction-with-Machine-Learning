@@ -1,0 +1,24 @@
+2025-02-27 18:17:20,522 - car_price_api - INFO - Input data: {'Manufacturer': {0: 'TOYOTA'}, 'Model': {0: 'Camry'}, 'Category': {0: 'Sedan'}, 'Leather interior': {0: 'Yes'}, 'Fuel type': {0: 'Petrol'}, 'Gear box type': {0: 'Automatic'}, 'Drive wheels': {0: 'Front'}, 'Doors': {0: '04-May'}, 'Wheel': {0: 'Left wheel'}, 'Color': {0: 'Black'}, 'Levy': {0: 1200.0}, 'Engine volume': {0: 2.5}, 'Cylinders': {0: 4}, 'Airbags': {0: 8}, 'Mileage': {0: 25000.0}, 'Prod. year': {0: 2018}}
+2025-02-27 18:17:20,527 - car_price_api - INFO - Processed Manufacturer: ['toyota']
+2025-02-27 18:17:20,527 - car_price_api - INFO - Processed Model: ['camry']
+2025-02-27 18:17:20,528 - car_price_api - INFO - Processed Category: ['sedan']
+2025-02-27 18:17:20,528 - car_price_api - INFO - Processed Leather interior: ['yes']
+2025-02-27 18:17:20,529 - car_price_api - INFO - Processed Fuel type: ['petrol']
+2025-02-27 18:17:20,530 - car_price_api - INFO - Processed Gear box type: ['automatic']
+2025-02-27 18:17:20,531 - car_price_api - INFO - Processed Drive wheels: ['front']
+2025-02-27 18:17:20,531 - car_price_api - INFO - Processed Doors: ['04-may']
+2025-02-27 18:17:20,531 - car_price_api - INFO - Processed Wheel: ['left wheel']
+2025-02-27 18:17:20,532 - car_price_api - INFO - Processed Color: ['black']
+2025-02-27 18:17:20,559 - car_price_api - INFO - Predicted price: 30780.773930615665
+2025-02-27 18:29:38,498 - car_price_api - WARNING - Feature 'Doors' value '2' is not in the training data, using default value as replacement
+2025-02-27 18:29:38,499 - car_price_api - ERROR - Encoding error in feature 'Doors': y contains previously unseen labels: 1
+2025-02-27 18:31:00,185 - car_price_api - WARNING - Feature 'Model' value 'cat' is not in the training data, using default value as replacement
+2025-02-27 18:31:00,186 - car_price_api - ERROR - Encoding error in feature 'Model': y contains previously unseen labels: 1038
+2025-02-27 18:42:00,152 - car_price_api - WARNING - Feature 'Model' value 'cat' is not in the training data, using '09-mar' as replacement
+2025-02-27 18:42:00,154 - car_price_api - WARNING - Feature 'Doors' value '2' is not in the training data, using '02-mar' as replacement
+2025-02-27 18:42:00,181 - car_price_api - INFO - Predicted price: 30453.50230110631
+2025-02-27 18:42:53,020 - car_price_api - WARNING - Feature 'Model' value 'cat' is not in the training data, using '09-mar' as replacement
+2025-02-27 18:42:53,020 - car_price_api - WARNING - Feature 'Wheel' value 'right wheel' is not in the training data, using 'left wheel' as replacement
+2025-02-27 18:42:53,027 - car_price_api - INFO - Predicted price: 31803.833332130842
+2025-02-27 19:06:32,978 - car_price_api - INFO - Input data: {'Manufacturer': {0: 'acura'}, 'Model': {0: '09-mar'}, 'Category': {0: 'cabriolet'}, 'Leather interior': {0: 'yes'}, 'Fuel type': {0: 'diesel'}, 'Gear box type': {0: 'tiptronic'}, 'Drive wheels': {0: 'front'}, 'Doors': {0: '02-mar'}, 'Wheel': {0: 'right-hand drive'}, 'Color': {0: 'black'}, 'Levy': {0: 10000.0}, 'Engine volume': {0: 8.0}, 'Cylinders': {0: 7}, 'Airbags': {0: 4}, 'Mileage': {0: 10000.0}, 'Prod. year': {0: 2018}}
+2025-02-27 19:06:33,028 - car_price_api - INFO - Predicted price: 15834.418084859579
