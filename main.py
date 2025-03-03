@@ -10,8 +10,8 @@ from app.prediction import predict_car_price, get_valid_feature_values
 from app.utils import logger
 
 # Load model components
-model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 
-                          'car_price_prediction_components.pkl')
+model_path = "/opt/render/project/src/static/car_price_prediction_components.pkl"
+
 with open(model_path, 'rb') as f:
     components = pickle.load(f)
 
