@@ -157,7 +157,7 @@ The frontend provides a user-friendly form for entering car features and obtaini
 1. Clone or download the repository.
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run the server: `python -m main`
-4. Access in the browser: `http://localhost:8000`
+4. Access in the browser: `https://car-price-prediction-with-machine.onrender.com/`
 
 ## Model Advantages
 
