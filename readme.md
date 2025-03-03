@@ -21,20 +21,19 @@ This project predicts car prices by analyzing various features such as manufactu
 
 ## Project Structure
 
-
 ```
 Car Price Prediction System/
 ├── app/                    # FastAPI Application
 │   ├── __init__.py        
-│   ├── main.py             # FastAPI Main Program
 │   ├── models.py           # Data Model Definitions
 │   ├── prediction.py       # Prediction Logic
 │   └── utils.py            # Utility Functions
-├── static/                 # Static Files
-│   └── index.html          # Frontend Interface
 ├── logs/                   # Log Files
+├── static/                 # Static Files
+│   ├── car_price_prediction_components.pkl  # Saved Model and Processing Components
+│   └── index.html          # Frontend Interface
+├── main.py                 # FastAPI Main Program
 ├── real-car-predict.ipynb  # Jupyter Notebook for Model Training and Analysis
-├── car_price_prediction_components.pkl  # Saved Model and Processing Components
 └── README.md               # Project Documentation
 ```
 
@@ -157,7 +156,7 @@ The frontend provides a user-friendly form for entering car features and obtaini
 ### Installation Steps
 1. Clone or download the repository.
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run the server: `python -m app.main`
+3. Run the server: `python -m main`
 4. Access in the browser: `http://localhost:8000`
 
 ## Model Advantages
