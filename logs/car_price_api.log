@@ -190,3 +190,15 @@
 2025-03-03 08:03:54,301 - car_price_api - INFO - Processed Wheel: ['left wheel']
 2025-03-03 08:03:54,301 - car_price_api - INFO - Processed Color: ['beige']
 2025-03-03 08:03:54,350 - car_price_api - INFO - Predicted price: 8059.727234006732
+2025-03-03 16:15:19,687 - car_price_api - INFO - Input data: {'Manufacturer': {0: 'acura'}, 'Model': {0: '09-mar'}, 'Category': {0: 'cabriolet'}, 'Leather interior': {0: 'no'}, 'Fuel type': {0: 'cng'}, 'Gear box type': {0: 'automatic'}, 'Drive wheels': {0: '4x4'}, 'Doors': {0: '02-mar'}, 'Wheel': {0: 'left wheel'}, 'Color': {0: 'beige'}, 'Levy': {0: 1000.0}, 'Engine volume': {0: 2.0}, 'Cylinders': {0: 2}, 'Airbags': {0: 2}, 'Mileage': {0: 2.0}, 'Prod. year': {0: 2000}}
+2025-03-03 16:15:19,695 - car_price_api - INFO - Processed Manufacturer: ['acura']
+2025-03-03 16:15:19,697 - car_price_api - INFO - Processed Model: ['09-mar']
+2025-03-03 16:15:19,701 - car_price_api - INFO - Processed Category: ['cabriolet']
+2025-03-03 16:15:19,704 - car_price_api - INFO - Processed Leather interior: ['no']
+2025-03-03 16:15:19,707 - car_price_api - INFO - Processed Fuel type: ['cng']
+2025-03-03 16:15:19,710 - car_price_api - INFO - Processed Gear box type: ['automatic']
+2025-03-03 16:15:19,712 - car_price_api - INFO - Processed Drive wheels: ['4x4']
+2025-03-03 16:15:19,713 - car_price_api - INFO - Processed Doors: ['02-mar']
+2025-03-03 16:15:19,713 - car_price_api - INFO - Processed Wheel: ['left wheel']
+2025-03-03 16:15:19,719 - car_price_api - INFO - Processed Color: ['beige']
+2025-03-03 16:15:19,771 - car_price_api - INFO - Predicted price: 7745.097794973544
