@@ -207,22 +207,25 @@
         document.addEventListener("DOMContentLoaded", function () {
             console.log("Page loaded. Fetching feature values...");
         
-            fetch("http://127.0.0.1:8000/feature-values")
+            // ✅ Set the API base URL (Render server)
+            const API_URL = "https://car-price-prediction-with-machine.onrender.com";
+    
+            fetch(`${API_URL}/feature-values`)
                 .then(response => response.json())
                 .then(data => {
                     console.log("Received feature values:", data);
         
-                    // 隐藏 Loading 提示
+                    // Hide loading message
                     document.getElementById("loadingStatus").style.display = "none";
         
-                    // 显示表单
+                    // Show the form
                     document.getElementById("predictionForm").style.display = "block";
         
-                    // 填充下拉菜单
+                    // Populate dropdown menus
                     function populateDropdown(id, values) {
                         const select = document.getElementById(id);
                         if (!select) return;
-                        select.innerHTML = ""; // 清空旧选项
+                        select.innerHTML = ""; // Clear previous options
                         values.forEach(value => {
                             let option = document.createElement("option");
                             option.value = value;
@@ -231,7 +234,7 @@
                         });
                     }
         
-                    // 依次填充所有分类特征
+                    // Populate all categorical feature dropdowns
                     populateDropdown("Manufacturer", data.Manufacturer);
                     populateDropdown("Model", data.Model);
                     populateDropdown("Category", data.Category);
@@ -248,13 +251,13 @@
                     document.getElementById("loadingStatus").textContent = "Failed to load feature data.";
                 });
         
-            // **拦截表单提交，防止页面刷新**
+            // **Intercept form submission to prevent page refresh**
             document.getElementById("predictionForm").addEventListener("submit", function (event) {
-                event.preventDefault();  // 阻止默认提交（防止刷新）
+                event.preventDefault();  // Prevent default submission (avoid refresh)
         
                 console.log("Submitting form...");
         
-                // 获取用户输入的数据
+                // Collect user input
                 const formData = {
                     Manufacturer: document.getElementById("Manufacturer").value,
                     Model: document.getElementById("Model").value,
@@ -276,8 +279,8 @@
         
                 console.log("Sending data:", formData);
         
-                // 发送 POST 请求到后端
-                fetch("http://127.0.0.1:8000/predict", {
+                // ✅ Send prediction request to the API
+                fetch(`${API_URL}/predict`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData)
@@ -296,7 +299,10 @@
                 });
             });
         });
-        </script>
+    </script>
+    
+       
+         
         
 </body>
 </html>
