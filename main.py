@@ -10,7 +10,10 @@ from app.prediction import predict_car_price, get_valid_feature_values
 from app.utils import logger
 
 # Load model components
-model_path = "/opt/render/project/src/static/car_price_prediction_components.pkl"
+if "RENDER" in os.environ:
+    model_path = "/opt/render/project/src/static/car_price_prediction_components.pkl"
+else:
+    model_path = os.path.join(os.path.dirname(__file__), "static", "car_price_prediction_components.pkl")
 
 with open(model_path, 'rb') as f:
     components = pickle.load(f)
@@ -32,7 +35,7 @@ app.add_middleware(
 )
 
 # Create a directory for static files
-static_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
+static_folder = os.path.join(os.path.dirname(__file__), "static")
 os.makedirs(static_folder, exist_ok=True)
 
 # Mount static file service
@@ -86,4 +89,4 @@ async def feature_values():
 if __name__ == "__main__":
     # Get port number, prioritize environment variable
     port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("app.main:app", host="0.0.0.0", port=port)
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
